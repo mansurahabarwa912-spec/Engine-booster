@@ -1,0 +1,21 @@
+{
+  "name": "Engine Booster - Commercial Solar Underwriting",
+  "short_name": "Engine Booster",
+  "description": "Bill to Underwriting for Commercial Solar + EPC - Optimized for Microsoft Edge (Chromium). NOT Internet Explorer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0f1e",
+  "theme_color": "#0a0f1e",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "edge": {
+    "compatible": true
+  },
+  "browser": "Microsoft Edge",
+  "ie_supported": false
+}
