@@ -4,6 +4,16 @@ Microsoft Edge (Chromium) Optimized - NOT Internet Explorer
 IE is deprecated / unsupported. Edge = Chromium. All frontend uses modern Chromium APIs only.
 Flow: Upload Bill -> Extract -> PVWatts -> Calculate -> DSCR/Lender -> Push to GHL
 """
+import cloudinary
+import cloudinary.uploader
+from fpdf import FPDF
+import io, os
+
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET")
+)
 import os
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -42,6 +52,9 @@ class ManualInput(BaseModel):
 @app.get("/health")
 def health():
     return {"status": "ok", "market": "USA", "version": "3.0.0", "browser": "Microsoft Edge (Chromium) - NOT Internet Explorer", "ie_supported": False}
+@app.get("/report/{deal_id}")
+def get_report(deal_id: str):
+    return {"message": f"Report for {deal_id} - PDF coming soon"}
 
 @app.get("/edge")
 def edge_info():
@@ -107,5 +120,6 @@ async def underwrite_bill(file: UploadFile = File(...), contact_id: str = Form(N
 
 @app.get("/api/v1/ghl-fields")
 def ghl_fields(): return GHL_FIELDS
+
 
 
